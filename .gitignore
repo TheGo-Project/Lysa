@@ -1,0 +1,15 @@
+# Ignore node_modules inside the "2 Deploy Smart Contract" folder
+2. Deploy Smart Contract/node_modules/
+
+# General Node.js and Truffle ignores
+node_modules/
+build/
+.env
+.env.local
+.env.*.local
+
+# Truffle-specific
+*.log
+.cache
+.history
+truffle-config.js.backup
