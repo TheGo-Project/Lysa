@@ -41,7 +41,7 @@ geth --networkid 32382 \
     --authrpc.jwtsecret "./jwt.hex" \
     --authrpc.port 8200 \
     --datadir "./execution/data" \
-    --bootnodes "enode://1bf7c575d0270b7b12855fcdeb89f74f4a1f6d571729ff3447020cc13fabbb0af6e66599f47456c4b299c18fe693fc6c7089971c5540e8e6543405bfb29a1f4b@34.46.205.31:30301,enode://f073086aaaa05d3d7789bc65d933b0eee2b70096b1103ad5d483244eabb8a22454472232431cdf95562ac87ae45febe924117bc6b5edfd98a1ee89ee7517dac3@34.46.205.31:8400,enode://ffa33c02d3e38892997c303527b21af75378f8abd637e82327a2469e1b5c61c0502f74510868b8878e18996fe55c6462978a8654f23207f8a84b8e18412a4934@34.46.205.31:8401,enode://1e107cb4cc6f0976926a05e4a768b081907f76720d9210be29b51b8032125c54f5cce53a2281eebaf7ca9de9a6d62d79959bb020894911a8b96188719fb1ce65@34.46.205.31:8402" \
+    --bootnodes "enode://c7489772eb8cb8346c1253f423ed12fc6140a1b24d854fc416b6644c007931c524f9cdf96193f8d3aee8e316b70c150dea233aebf6feb3c9ce813971b178c593@34.46.205.31:8400,enode://ba8f8227271f0e5236770159c6c6e396d9d69507bc91e91c2707a88725eeb0c668f531f761ad69ed1a2aac0e85777879a796eb5a30d3bec299ba335e709dd939@34.46.205.31:8401,enode://b8002ed2e6b31e5b3fc55655c2f67ef6723175be76eabf4fdecd7550512d9ee4f08fae726d86bed0c78ca09d60ff5cbc6f037bde5d684698f1ebbee97926c0c0@34.46.205.31:8402,enode://aaf4c069eaa55314fd325ac6e15770286527daf5007f8aae3620e3025debc49dc195e0f93820d3990358f6c521039981c25fc9027eeb06f47e3fe2c184494e27@34.46.205.31:30301" \
     --verbosity 3 \
     --syncmode snap
 ```
@@ -55,10 +55,10 @@ Run the following command to start the Prysm beacon chain:
     --datadir="./consensus/beacondata" \
     --min-sync-peers=1 \
     --genesis-state="./genesis.ssz" \
-    --bootstrap-node="enr:-MK4QNmn3pLG0hSKvKGEYpYr0WzjdGMXyJpHMaYR6fq-SIIQRGtwBXImrlEIsOKGQmxbdYzmB4QYzwFG3GzGgrwpppaGAZUClGKxh2F0dG5ldHOIAAAAYAAAAACEZXRoMpAc7vlaIAAAlP__________gmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQK3YhshakkFr-r23tm5a1kWN9ryOfZUniO58w6vPIFwRohzeW5jbmV0cw-DdGNwghBog3VkcIIQzA" \
-    --bootstrap-node="enr:-KO4QCUju2GAsUJLJTiQInwGPRAISMD-L1uO9NAQBLkECy-oYRuzfm_e5K26MLn8rNrkIIsK5-JKLaH7BzRcSB_RLXSGAZUClE4lg2V0aMfGhG6Qr5eAgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQPwcwhqqqBdPXeJvGXZM7Du4rcAlrEQOtXUgyROq7iiJIRzbmFwwIN0Y3CCINCDdWRwgiDQ" \
-    --bootstrap-node="enr:-KO4QEB6NNCfAGBDppCb0CRr9RvZCxoT2dxEsyhma6cTHc18SUgB-jU38hQlgiy_mRaMmwAxMJVjAwhL5ogYCsE8GLqGAZUClJtWg2V0aMfGhG6Qr5eAgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQL_ozwC0-OIkpl8MDUnshr3U3j4q9Y36CMnokaeG1xhwIRzbmFwwIN0Y3CCINGDdWRwgiDR" \
-    --bootstrap-node="enr:-KO4QG-B5CSnAVIAxz_zBmMnNr2K5SnGbiIYd8QSRv4mtjUBOohyUbcc8ykT7Emjy0dKud7JdDlzfT8vSQux6g_a90WGAZUClNX5g2V0aMfGhG6Qr5eAgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQMeEHy0zG8JdpJqBeSnaLCBkH92cg2SEL4ptRuAMhJcVIRzbmFwwIN0Y3CCINKDdWRwgiDS" \
+    --bootstrap-node="enr:-MK4QEPyMDqx01Di2oPZ11lTmxHML-zZzhBZImbE5DWmaFiXWPqQC8CpDj2k1Bf75jj8AZXcW_ys8B5LtMoTbnaJdmCGAZUk8TEsh2F0dG5ldHOIAAAAAAAAAwCEZXRoMpAc7vlaIAAAlP__________gmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQNnokiDpRTr4D4DNySwUCRP3Ii47xI3fKRiTjAZcpBGcYhzeW5jbmV0cw-DdGNwghBog3VkcIIQzA" \
+    --bootstrap-node="enr:-KO4QFNtkDtXX7O5xaXGezjlSKAH9uZVNegkN7nKFFWt5CySId9TCPkt_vg_QoHjCxW3JDc0yLpqv9nLPdOqv0BnMSGGAZUk8Rzag2V0aMfGhG3vOb-AgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQPHSJdy64y4NGwSU_Qj7RL8YUChsk2FT8QWtmRMAHkxxYRzbmFwwIN0Y3CCINCDdWRwgiDQ" \
+    --bootstrap-node="enr:-KO4QG-GThvbW9jxO0M7CET1SiWd2yHJH2U9iAY3Y61Qt1vFKAX4ihQjw9je9o4qWhy4mk2Du3etnmV_gbPDk0q4qjyGAZUk8Wnjg2V0aMfGhG3vOb-AgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQO6j4InJx8OUjZ3AVnGxuOW2daVB7yR6RwnB6iHJe6wxoRzbmFwwIN0Y3CCINGDdWRwgiDR" \
+    --bootstrap-node="enr:-KO4QNHoBbdMDls41XDBWe8YGIdQ9qIY56BEG_AxBJpmWfdvMv4vGEivOOwepjzNUFbrdRLCiCfSeInKyEmRijZ8FrWGAZUk8aSng2V0aMfGhG3vOb-AgmlkgnY0gmlwhCIuzR-Jc2VjcDI1NmsxoQK4AC7S5rMeWz_FVlXC9n72cjF1vnbqv0_ezXVQUS2e5IRzbmFwwIN0Y3CCINKDdWRwgiDS" \
     --chain-config-file="./config.yml" \
     --contract-deployment-block=0 \
     --chain-id=32382 \
