@@ -127,8 +127,8 @@ To connect a wallet like MetaMask to your custom network, follow these steps:
 ### Add Custom Token
 
 1. In MetaMask, go to the **Assets** tab and click **Import Tokens**.
-2. Select **Custom Token** and enter the contract address:
-   - **Token Contract Address**: `0xe5B72ec00993FF0Fb6af42D864643Cf24b2C556a`
+2. Select **Custom Token** and enter the contract address to add GSMC:
+   - **Token Contract Address**: `0x53424a37e17d8729617015ae0c622836907B05b4`
 3. Click **Add Custom Token**, then **Import Tokens**.
 
 Now your wallet is connected to the custom PoS network and can interact with the custom token.
