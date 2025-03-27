@@ -1,103 +1,113 @@
-# Deploying a Test Smart Contract on GoSmartAI PoS Network (lysa-testnet)
-
-This guide outlines the step-by-step process to deploy a test smart contract on the **GoSmartAI PoS network (lysa-testnet)** using **Truffle**.
+# 🚀 Deploying Smart Contracts Using Truffle with GSMC (Gasless)
 
 ## **Prerequisites**
 
-Ensure that you have the following installed and set up before proceeding:
+Before deploying the smart contracts, ensure that you have the following set up:
 
-- **Node.js** (LTS version recommended)
-- **npm** (included with Node.js)
-- **Truffle** (installed globally via `npm install -g truffle`)
-- **GoSmartAI PoS Network (lysa-testnet) RPC URL**
-- **A funded testnet account** on lysa-testnet
-- **A valid `.env` file** to securely store your private key
+- **Node.js & npm** installed on your system.
+- **Truffle** installed globally using:
+  ```sh
+  npm install -g truffle
+  ```
+- A configured **Truffle project** with the necessary contracts and migration scripts.
+- A properly configured **truffle-config.js** file.
+- Your private Ethereum network (`myPOSNetwork`) set up and accessible.
 
----
-
-## **Step 1: Install Dependencies**
-
-Navigate to your smart contract project directory and install the required dependencies:
-
-```sh
-npm install
-```
-
-This command will install all necessary **Node.js** packages specified in `package.json`.
+> ⚠️ **Developer Note:**  
+> You will require a **one-time transfer of 0.01 ETH** to sign the **GSMC approval transaction**. This approval enables the use of **GSMC as gas** for smart contract deployments.  
+> Once approved, you can deploy contracts using GSMC according to the approved amount—**no need to use ETH for every deployment**.  
+> On the private PoS network, this ETH is **faucet-based** and free. On mainnet, however, the Relayer will handle ETH payments on behalf of users.
 
 ---
 
-## **Step 2: Configure Deployment Credentials**
+## **Project Directory Structure**
 
-Before deploying the contract, update the **private key** and **account address**.
+Your project should look similar to this:
 
-### **2.1 Update the Private Key in `.env`**
-
-Edit the `.env` file in your project directory and add or update your **private key**:
-
-```sh
-PRIVATE_KEY=your_private_key_here_without_0x
 ```
-
-**Note:**
-
-- Never share or commit your private key to version control.
-- Ensure the `.env` file is included in `.gitignore` for security.
-
-### **2.2 Update the Account Address in `truffle-config.js`**
-
-Modify `truffle-config.js` to use your **wallet address** for deployment. Locate the network configuration for `myPOSNetwork` and update the **from** field with your account address:
-
-```js
-myPOSNetwork: {
-  provider: () => new HDWalletProvider(
-    process.env.PRIVATE_KEY,
-    "http://34.46.205.31:8000"
-  ),
-  from: "0xYourAccountAddressHere"  // Update this with your wallet address
-  ...
-}
+TRUFFLE-CONTRACT
+│── builds/
+│   │── GSMCToken.json
+│── build/contracts/
+│   │── SimpleContract.json
+│── contracts/
+│   │── SimpleContract.sol
+│── node_modules/
+│── test/
+│── .env
+│── package-lock.json
+│── package.json
+│── truffle-config.js
 ```
 
 ---
 
-## **Step 3: Compile the Smart Contract**
+## **Deployment Steps**
 
-Once the credentials are set, compile the smart contract using:
+### ✅ Step 1: Approve GSMC Usage
 
-```sh
-truffle compile
+Before deploying contracts using GSMC, you must **approve** the relayer to spend GSMC on your behalf. This step uses **ETH** to sign the approval and is required **only once**.
+
+> 💡 **Tip:**  
+> The approval amount is set to **1000 GSMC**, allowing you to deploy multiple contracts without needing to re-approve.
+
+### 🔧 Run the approval script:
+
+```bash
+node scripts/approveGSMC.js
 ```
 
-This will check for syntax errors and generate the necessary build artifacts inside the `build/contracts` directory.
+If successful, your address will be approved to use GSMC for deployment fees.
 
 ---
 
-## **Step 4: Deploy the Smart Contract**
+### ✍️ Step 2: Sign the Deployment Request
 
-To deploy your smart contract on the **GoSmartAI PoS network (lysa-testnet)**, run the following migration command:
+After approving GSMC, sign the smart contract deployment request.
 
-```sh
-truffle migrate --network myPOSNetwork --reset
+- An **example request** is available in the project.
+- Ensure the request includes:
+
+  ```js
+  const gsmcFee = ethers.utils.parseUnits("10", 18);
+  ```
+
+  This sets the deployment cost to **10 GSMC (minimum GSMC Gas Fee)**.
+
+- **Replace** `contractArtifact` with your **compiled contract JSON** (e.g., `SimpleContract.json`).
+
+> 🛠️ You can compile the contract using:
+>
+> ```bash
+> truffle compile
+> ```
+
+### 🔧 Run the signing script:
+
+```bash
+node scripts/signDeployRequest.js
 ```
 
-### **Explanation of Flags:**
-
-- `--network myPOSNetwork`: Specifies the target network as defined in `truffle-config.js`.
-- `--reset`: Ensures that all migrations run from the beginning, redeploying the contracts.
-
-Once the process is complete, **Truffle** will display the deployed contract addresses.
+Upon success, a file named `deployRequest.json` will be generated.
 
 ---
 
-## **Step 5: Verify Deployment**
+### 📡 Step 3: Deploy the Smart Contract via Relayer
 
-After deployment, confirm that the contract is live by checking the transaction hash on the **GoSmartAI PoS lysa-testnet block explorer**.
+Use the following `curl` command to send the signed deployment request to the network relayer:
+
+```bash
+curl -X POST http://34.46.205.31:6060/deploy \
+  -H "Content-Type: application/json" \
+  --data-binary @deployRequest.json
+```
 
 ---
 
-## **Conclusion**
+### ✅ Step 4: Confirm Deployment
 
-You have successfully deployed your test smart contract on **GoSmartAI PoS network (lysa-testnet)**. You can now interact with your contract using **Truffle Console** or a web interface.
+After a successful deployment, the API response will include a transaction hash (`tx`). You can use this hash to track the contract deployment status on your private network.
 
 ---
+
+Happy Building with GSMC! 🛠️✨
